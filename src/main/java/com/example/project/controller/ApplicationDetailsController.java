@@ -47,8 +47,8 @@ public class ApplicationDetailsController {
 	}
 	
 	  @PostMapping("/uploadFile")
-		public int uploadFile(@RequestParam("file") MultipartFile multipartFile,@RequestParam("firstName") String firstName,@RequestParam("lastName") String lastName,@RequestParam("postalAddress") String postalAddress,@RequestParam("collegeName") String collegeName,@RequestParam("state") String state,@RequestParam("className") String className) throws IOException{
-		  return appSer.uploadFile(multipartFile, firstName,lastName,postalAddress,collegeName,state,className);
+		public int uploadFile(@RequestParam("file") MultipartFile multipartFile,@RequestParam("firstName") String firstName,@RequestParam("lastName") String lastName,@RequestParam("postalAddress") String postalAddress,@RequestParam("collegeName") String collegeName,@RequestParam("state") String state,@RequestParam("className") String className, @RequestParam("studentId") int studentId) throws IOException{
+		  return appSer.uploadFile(multipartFile, firstName,lastName,postalAddress,collegeName,state,className,studentId );
 		  
 		  
 	  }

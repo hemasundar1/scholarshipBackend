@@ -11,6 +11,7 @@ import java.util.Optional;
 
 
 import com.example.project.models.Application_details;
+import com.example.project.models.UserModel;
 import com.example.project.repository.ApplicationDetailsRepository;
 
 @Service
@@ -68,7 +69,7 @@ public class ApplicationDetailsService {
 		
 	}
 	
-	public int uploadFile(MultipartFile multipartFile, String firstName,String lastName,String postalAddress,String collegeName, String state, String className) throws IOException {
+	public int uploadFile(MultipartFile multipartFile, String firstName,String lastName,String postalAddress,String collegeName, String state, String className,int studentId) throws IOException {
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
 		String url = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -77,7 +78,7 @@ public class ApplicationDetailsService {
 				.toUriString();
 		
 		Application_details appDetails = new Application_details(fileName, firstName, lastName, postalAddress, collegeName, state,className, url,multipartFile.getBytes());
-	
+		appDetails.setUserModel(new UserModel(studentId));
 		appRepo.save(appDetails);
 		
 		String contentType = multipartFile.getContentType();

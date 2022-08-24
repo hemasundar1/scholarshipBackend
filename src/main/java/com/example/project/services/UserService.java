@@ -26,16 +26,16 @@ public class UserService {
 		return userRepo.findById(id);
 	}
 	
-	public String saveUser(UserModel userModel) {
-		String response;
-		
-		if (userRepo.save(userModel) != null)
-			response = "Successfully inserted";
-		else
-			response = "Not inserted , Please try again";
-		return response;
-		
-	}
+//	public String saveUser(UserModel userModel) {
+//		String response;
+//		
+//		if (userRepo.save(userModel) != null)
+//			response = "Successfully inserted";
+//		else
+//			response = "Not inserted , Please try again";
+//		return response;
+//		
+//	}
 
 	public String editUser(UserModel userModel, int id) {
 		

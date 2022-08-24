@@ -47,6 +47,14 @@ public class UserModel {
 
 
 
+	public Application_details getApplication_details() {
+		return application_details;
+	}
+
+	public void setApplication_details(Application_details application_details) {
+		this.application_details = application_details;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
@@ -122,6 +130,11 @@ public class UserModel {
 		this.mobileNumber = mobileNumber;
 		this.password = password;
 		this.confirmPassword = confirmPassword;
+	}
+
+	public UserModel(int userId) {
+		super();
+		this.userId = userId;
 	}
 	
 	

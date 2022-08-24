@@ -33,10 +33,10 @@ public class UserController {
 		return userService.getUser(id);
 	}
 	
-	@PostMapping("/User")
-	public String saveUser(@RequestBody UserModel userModel) {
-		return userService.saveUser(userModel);
-	}
+//	@PostMapping("/User")
+//	public String saveUser(@RequestBody UserModel userModel) {
+//		return userService.saveUser(userModel);
+//	}
 	
 	@PutMapping("/User")
 	public String editUser(@RequestBody UserModel userModel, @RequestParam(value="id" ,required=true) int id) {

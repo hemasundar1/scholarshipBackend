@@ -48,11 +48,19 @@ public class Application_details {
 	
 	@OneToOne(fetch= FetchType.LAZY, optional = false)
 	@JsonIgnore
-	@JoinColumn(name="studentId", referencedColumnName = "userId", nullable= false)
+	@JoinColumn(name="studentId", referencedColumnName = "userId")
 	private UserModel userModel;
 	
 	
 	
+	public UserModel getUserModel() {
+		return userModel;
+	}
+
+	public void setUserModel(UserModel userModel) {
+		this.userModel = userModel;
+	}
+
 	public Application_details(int appId) {
 		this.appId = appId;
 	}
