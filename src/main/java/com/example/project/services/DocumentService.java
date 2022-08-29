@@ -1,5 +1,6 @@
 package com.example.project.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,23 @@ public class DocumentService {
 	
 	@Autowired
 	DocumentRepository docRepo;
+	
+	public List<DocumentDetails> getAlldocuments()
+	{
+		return (List<DocumentDetails>)docRepo.findAll();
+	}
+	
+	/*public DocumentDetails getdocumentByappId(int appId)
+	{
+		Application_details app=new Application_details();
+		
+		return docRepo.findByappId(appId);
+	}*/
+	
+	public DocumentDetails getdocumentsById(Integer id)
+	{
+		return docRepo.findById(id).get();
+	}
 	
 	public Optional<DocumentDetails> getDet( int id){
 		return docRepo.findById(id);

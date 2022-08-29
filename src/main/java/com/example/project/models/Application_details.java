@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @CrossOrigin(origins = "http://localhost:4200")
 
 @Entity
-
 public class Application_details {
 	
 	@Id
@@ -34,24 +33,41 @@ public class Application_details {
 	private String state;
 	private String className;
 	private String url;
+	private String status;
+	private int assigned;
 	
 	@Lob
 	private byte[] document;
 	
 	
 	
-	@OneToOne(mappedBy= "application_details" , fetch = FetchType.LAZY , orphanRemoval = true)
+	@OneToOne(mappedBy= "application_details" , fetch = FetchType.EAGER , orphanRemoval = true)
 	@JsonIgnore
 	private DocumentDetails documentDetails;
 	
 	
 	
-	@OneToOne(fetch= FetchType.LAZY, optional = false)
-	@JsonIgnore
+	@OneToOne(fetch= FetchType.EAGER, optional = false)
+	//@JsonIgnore
 	@JoinColumn(name="studentId", referencedColumnName = "userId")
 	private UserModel userModel;
 	
-	
+	public int getAssigned() {
+		return assigned;
+	}
+
+	public void setAssigned(int assigned) {
+		this.assigned = assigned;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 	public UserModel getUserModel() {
 		return userModel;

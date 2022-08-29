@@ -18,44 +18,28 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public List<UserModel> getAllUser(){
-		return userRepo.findAll();
-	}
-
-	public Optional<UserModel> getUser(int id){
-		return userRepo.findById(id);
+	public void save(UserModel useremployee)
+	{
+		System.out.println("Save service is calling for user"+" "+useremployee.getMobileNumber());
+		
+		userRepo.save(useremployee);
 	}
 	
-//	public String saveUser(UserModel userModel) {
-//		String response;
-//		
-//		if (userRepo.save(userModel) != null)
-//			response = "Successfully inserted";
-//		else
-//			response = "Not inserted , Please try again";
-//		return response;
-//		
-//	}
+	public List<UserModel> getAllUsers()
+	{
+		return (List<UserModel>)userRepo.findAll();
+	}
 
-	public String editUser(UserModel userModel, int id) {
-		
-		Optional<UserModel> user = userRepo.findById(id);
-		UserModel result =  user.get();
-		result.setEmail(userModel.getEmail());
-		result.setMobileNumber(userModel.getMobileNumber());
-		result.setPassword(getEncodedPassword(userModel.getPassword()));
-		result.setConfirmPassword(getEncodedPassword(userModel.getConfirmPassword()));
-		result.setUserName(userModel.getUserName());
-
-		if(userRepo.save(result)!=null) {
-			 return "Successfully updated";
-		}
-		else {
-			return "Not Updated, Please try again";
-		}
-		
+	public UserModel getUserById(Integer id){
+		return userRepo.findById(id).get();
 	}
 	
+	public void deleteEmployee(Integer id)
+	{
+		System.out.println("Deleting in service");
+		userRepo.deleteById(id);
+	}
+		
 	public String deleteUser(int id) {
 		
 		try {
@@ -73,4 +57,10 @@ public class UserService {
 		return passwordEncoder.encode(password);
 	}
 	
+	public UserModel getUserByuserName(String email)
+	{
+		UserModel user=this.userRepo.findByEmail(email);
+		System.out.println(user);
+		return user;
+	}
 }

@@ -40,7 +40,7 @@ public class UserModel {
 	
 	
 	
-	@OneToOne(mappedBy= "userModel" , fetch = FetchType.LAZY , orphanRemoval = true)
+	@OneToOne(mappedBy= "userModel" , fetch = FetchType.EAGER , orphanRemoval = true)
 	@JsonIgnore
 	private Application_details application_details;
 	

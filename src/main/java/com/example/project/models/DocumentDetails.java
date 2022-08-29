@@ -31,12 +31,11 @@ public class DocumentDetails {
 	private String rollNum;
 	
 	
-	@OneToOne(fetch= FetchType.LAZY, optional = false)
-	@JsonIgnore
-	@JoinColumn(name="applicationId", referencedColumnName = "appId", nullable= false)
+	@OneToOne(fetch= FetchType.EAGER)
+	//@JsonIgnore
+	@JoinColumn(name="applicationId", referencedColumnName = "appId")
 	private Application_details application_details;
 	
-
 	public DocumentDetails(String adharNum, String accountNum, String ifscNum, String branch,String rollNum) {
 		super();
 		this.adharNum = adharNum;
@@ -46,9 +45,6 @@ public class DocumentDetails {
 		this.rollNum=rollNum;
 
 	}
-	
-	
-
 	public int getId() {
 		return id;
 	}

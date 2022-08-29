@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -19,10 +20,50 @@ public class ApplicationDetailsService {
 
 	@Autowired
 	ApplicationDetailsRepository appRepo;
-
-	public Optional<Application_details> getAppDetails(int id) {
-		return appRepo.findById(null);
+	
+	public List<Application_details> getAllRequests()
+	{
+		return (List<Application_details>)appRepo.findAll();
 	}
+
+	public Application_details getAppDetailsById(Integer id) {
+		return appRepo.findById(id).get();
+	}
+	
+	public void updateApp(Application_details appUpdate)
+	{
+		Integer id=appUpdate.getAppId();
+		Application_details appupdate=appRepo.findById(id).get();
+		appupdate.setFirstName(appUpdate.getFirstName());
+		appupdate.setLastName(appUpdate.getLastName());
+		appupdate.setClassName(appUpdate.getClassName());
+		appupdate.setCollegeName(appUpdate.getCollegeName());
+		appupdate.setPostalAddress(appUpdate.getPostalAddress());
+		appupdate.setState(appUpdate.getState());
+		appRepo.save(appUpdate);
+	}
+	
+	public void requestApprove(Integer id,Application_details appDetails)
+	{
+		Application_details appdetails=appRepo.findById(id).get();
+		appdetails.setStatus("approved");
+		appRepo.save(appdetails);
+	}
+	
+	public void requestReject(Integer id,Application_details appDetails)
+	{
+		Application_details appdetails=appRepo.findById(id).get();
+		appdetails.setStatus("rejected");
+		appRepo.save(appdetails);
+	}
+	
+	public void assigned(Integer appId,Application_details appDetails)
+	{
+		Application_details appdetails=appRepo.findById(appId).get();
+		appdetails.setAssigned(appDetails.getAssigned());
+		appRepo.save(appdetails);
+	}
+	
 	
 	public int postAppDetails(Application_details app) {
 		

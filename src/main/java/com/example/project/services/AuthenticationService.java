@@ -38,9 +38,9 @@ public class AuthenticationService {
 		String encryptedpassword = getEncodedPassword(userdto.getPassword());
 
 		//save the user
-		UserModel submituser = new UserModel(userdto.getUserRole(), userdto.getEmail(), userdto.getUsername(), 
+		UserModel submituser = new UserModel(userdto.getUserRole(), userdto.getEmail(), userdto.getUserName(), 
 				userdto.getMobileNumber(), encryptedpassword, encryptedpassword);
-		
+	//	System.out.println(userdto.getUsername());
 		
 		authrepo.save(submituser);
 		
